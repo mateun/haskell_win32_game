@@ -37,7 +37,7 @@ The binary of the game will be put into the "build" directory and can be invoked
 ```
   
 ### How to write your own game
-For the time being, just open funcs1.hs and modify the code in "gameUpdate" accordingly
+For the time being, just open funcs1.hs and modify the code in "gameUpdate" accordingly.
 
 
 ### Callable C functions

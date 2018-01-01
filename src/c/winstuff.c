@@ -87,10 +87,10 @@ int hswinmain(int width, int height)
 			   (LPVOID) NULL);
 
   if (hWnd == NULL)
-    {
+  {
       printf("error creating window!\n");
       return 1;
-    }
+  }
 	
   InitGL(hWnd);
   glClearColor(1, 0, 0, 1);
@@ -104,23 +104,21 @@ int hswinmain(int width, int height)
   HDC hdc = GetDC(hWnd);
   
   while(true){
-	if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) != 0)
-	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
-	}
-	
-    if (msg.message == WM_QUIT) {
-		printf("got quit message\n");
-		exit(0);
-	}
-	
-	// call Haskell update function
-	gameUpdate();
-	SwapBuffers(hdc);
-	
+    if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) != 0)
+    {
+      TranslateMessage(&msg);
+      DispatchMessage(&msg);
+    }
+    
+      if (msg.message == WM_QUIT) {
+      printf("got quit message\n");
+      exit(0);
+    }
+    
+    // call Haskell update function
+    gameUpdate();
+    SwapBuffers(hdc);
   }
-  
  
   return 0;
 }
