@@ -21,7 +21,7 @@ The basic architecture is as follows:
 
 create a folder called "build": 
 ```
-mkdir build
+$ mkdir build
 ```
 
 ##### Building
