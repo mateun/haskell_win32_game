@@ -2,12 +2,26 @@
 #include <stdio.h>
 #include "winfuncs.h"
 #include <gl/GL.h>
+#include <xinput.h>
 
 LRESULT CALLBACK WinProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 #define global_file static
 
 LRESULT CALLBACK WinProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
+// Debug stuff
+bool wDown = false;
+bool sDown = false;
+
+// end debug stuff
+
+int isKeyDown(char* key) 
+{
+  printf("asked for key: %s\n", key);
+  if (wDown == false) return 0; 
+  else return 1;
+}
 
 void clearScreen()
 {
@@ -115,6 +129,31 @@ int hswinmain(int width, int height)
       exit(0);
     }
     
+    // Poll for controller input
+    XINPUT_STATE inputState;
+    ZeroMemory(&inputState, sizeof(inputState));
+    
+    for (DWORD controllerIndex = 0; controllerIndex < XUSER_MAX_COUNT; ++controllerIndex)
+    {
+       if (XInputGetState(controllerIndex, &inputState) == ERROR_SUCCESS)
+       {
+         //printf("controller %d sent: %d\n", controllerIndex, inputState.dwPacketNumber);
+         bool up = inputState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP;
+         if (up) printf("up pressed!\n");
+         
+       }
+       else 
+       {
+         // TODO handle the case of non controller availibility0
+         //printf("no controller here %d\n", controllerIndex);
+       }
+    }
+    // Debug print keyboard state
+    //printf("w pressed/s pressed: %d/%d\n", wDown, sDown);
+    
+
+  
+    
     // call Haskell update function
     gameUpdate();
     SwapBuffers(hdc);
@@ -129,6 +168,30 @@ LRESULT CALLBACK WinProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
   switch (msg) 
   {
+    case WM_KEYDOWN:
+    {
+      if (wParam == VK_DOWN) 
+      {
+          sDown = true;
+          
+      }
+      if (wParam == VK_UP) wDown = true;
+      break;
+    }
+    
+    case WM_KEYUP:
+    {
+      if (wParam == VK_DOWN)
+      {
+        sDown = false;
+        
+      }
+      if (wParam == VK_UP) wDown = false;
+      break;
+    }
+    
+    
+    
     case WM_CLOSE: PostQuitMessage(0); break;
     default: return DefWindowProc(hwnd, msg, wParam, lParam);
   }

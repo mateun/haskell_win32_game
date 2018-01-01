@@ -11,7 +11,7 @@ move src\hs\*.o build
 
 echo.
 echo Linking everything
-ghc build\funcs1.o build\winstuff.o build\mycfuncs.o -lgdi32 -lopenGL32 -o build\game.exe
+ghc build\funcs1.o build\winstuff.o build\mycfuncs.o -lgdi32 -lopenGL32 -lxinput -o build\game.exe
 
 
 
