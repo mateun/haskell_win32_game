@@ -11,7 +11,7 @@ LRESULT CALLBACK WinProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 void clearScreen()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+  glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void InitGL(HWND hWnd) 
