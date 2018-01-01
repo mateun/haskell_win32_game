@@ -23,6 +23,7 @@ data GameState = GameState {
   } deriving (Show)
 
 
+
 -- This function is called from the 
 -- C part, outside of the main game loop
 gameUpdate :: IO()
