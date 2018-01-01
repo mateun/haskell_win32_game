@@ -10,8 +10,8 @@ The basic architecture is as follows:
   do this in Haskell)
 * The game loop is also written in the C part and does a callback to the 
   Haskell "gameUpdate" function every frame. 
-- The game logic itself is meant to be programmed in Haskell. 
-- To draw something on the screen, the C interface provides a number of 
+* The game logic itself is meant to be programmed in Haskell. 
+* To draw something on the screen, the C interface provides a number of 
   functions to call from Haskell for drawing 2D sprites, 3D meshes, clearing the screen etc. 
   
 ### How to write your own game
@@ -25,4 +25,4 @@ For the time being, just open funcs1.hs and modify the code in "gameUpdate" acco
 * 0.0.1 - basic interaction between Haskell and C; Win32 window with OpenGL context up and running; Haskell gameUpdate called each frame;
   
   
-### WORK IN PROGRESS
+### >> WORK IN PROGRESS <<
