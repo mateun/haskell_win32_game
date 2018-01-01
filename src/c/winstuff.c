@@ -50,25 +50,6 @@ void InitGL(HWND hWnd)
 
 }
 
-void pumpMessages()
-{
-	printf("in pump message\n");
-	MSG msg;
-	
-	while(true){
-	if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) != 0)
-	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
-	}
-	
-    if (msg.message == WM_QUIT) {
-		printf("got quit message\n");
-		exit(0);
-	}
-	}
-	
-}
 
 int hswinmain(int width, int height) 
 {

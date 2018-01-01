@@ -14,6 +14,28 @@ The basic architecture is as follows:
 * To draw something on the screen, the C interface provides a number of 
   functions to call from Haskell for drawing 2D sprites, 3D meshes, clearing the screen etc. 
   
+### How to build
+##### Prerequisites
+* Haskell compiler (ghc) in the PATH; tested with version 8.0.2
+* MinGW compiler (g++) in the PATH; testwed with 7.2.0
+
+create a folder called "build": 
+```
+mkdir build
+```
+
+##### Building
+Just invoke 
+``` Haskell
+$ build.bat
+```
+
+The binary of the game will be put into the "build" directory and can be invoked via 
+
+```
+.\game.exe
+```
+  
 ### How to write your own game
 For the time being, just open funcs1.hs and modify the code in "gameUpdate" accordingly
 
